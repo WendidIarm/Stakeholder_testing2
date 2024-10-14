@@ -1,0 +1,208 @@
+[gd_scene load_steps=12 format=3 uid="uid://bjta3eki5jj37"]
+
+[ext_resource type="Script" path="res://player/Playerscript.gd" id="1_ukgqn"]
+[ext_resource type="PackedScene" uid="uid://8vpyvje0rphb" path="res://player/view_model.tscn" id="2_pp75x"]
+[ext_resource type="Texture2D" uid="uid://bke7oc1u0rw8o" path="res://player/2024DIGITECH.hurtui.png" id="2_t40wa"]
+[ext_resource type="PackedScene" uid="uid://da16e2ut2t5pf" path="res://Interaction/interaction_raycst.tscn" id="3_sud4o"]
+[ext_resource type="Script" path="res://player/PlayerUI.gd" id="4_vqk0a"]
+[ext_resource type="Texture2D" uid="uid://bcxfeoghauhse" path="res://Interaction/interaction textures/DIGITECH2024.crosshairWHITE.png" id="5_lf0cm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_segj0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ku6s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_knifl"]
+radius = 0.7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbuuv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo861"]
+bg_color = Color(0.935866, 0, 0.275534, 1)
+
+[node name="Player(but a second time)" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995872, 0)
+script = ExtResource("1_ukgqn")
+crouch_speed = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+visible = false
+mesh = SubResource("CapsuleMesh_segj0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_2ku6s")
+
+[node name="neck" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59766, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/neck"]
+cull_mask = 1048573
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Player/neck/Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Player/neck/Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="view_model_camera" parent="Player/neck/Camera3D/SubViewportContainer/SubViewport" instance=ExtResource("2_pp75x")]
+cull_mask = 1047554
+
+[node name="interaction_raycst" parent="Player/neck/Camera3D" instance=ExtResource("3_sud4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0577269, 0)
+
+[node name="Topcast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.390959, 0)
+shape = SubResource("SphereShape3D_knifl")
+target_position = Vector3(0, 1, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -25.0
+offset_right = 46.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_vqk0a")
+
+[node name="hurtoverlay" type="TextureRect" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 23.0
+offset_right = 68.6666
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t40wa")
+expand_mode = 3
+
+[node name="crosshair" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -21.5
+offset_right = 13.5
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_lf0cm")
+
+[node name="Healthbar(notexture)" type="ProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -78.0
+offset_right = 333.0
+offset_bottom = -48.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_dbuuv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wo861")
+value = 100.0
+show_percentage = false
+
+[node name="deathscreen" type="Panel" parent="UI"]
+visible = false
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 25.0
+offset_right = 33.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/deathscreen"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -246.5
+offset_right = -78.0
+offset_bottom = -78.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="\'gameover\'" type="Label" parent="UI/deathscreen/BoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skill issue"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="BoxContainer2" type="BoxContainer" parent="UI/deathscreen"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 76.5
+offset_right = -77.0
+offset_bottom = 161.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="restart" type="Button" parent="UI/deathscreen/BoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "   RESTART   "
+
+[node name="quit" type="Button" parent="UI/deathscreen/BoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "    QUIT    "
+
+[node name="Controlslabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -265.0
+offset_top = 24.0
+offset_right = -22.0
+offset_bottom = 177.0
+grow_horizontal = 0
+text = "Control list
+WASD - Movement
+Shift - Increase speed
+Space - Jump
+Ctrl - Crouch
+F - Punch
+T - Inspect(buggy)
+TAB - Hide controls"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="UI/deathscreen/BoxContainer2/restart" to="UI" method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/deathscreen/BoxContainer2/quit" to="UI" method="_on_quit_pressed"]

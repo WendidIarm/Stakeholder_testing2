@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://b81n3tobeu3qm"]
+
+[ext_resource type="Script" path="res://Interaction/Objects/Item/item_data.gd" id="1_7enqx"]
+
+[resource]
+script = ExtResource("1_7enqx")
+name = "Hook"
+description = "Makeshift 'grappling hook'
+Created from shards of old masks and climbing rope."
+Stackable = false

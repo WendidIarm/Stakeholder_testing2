@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://bc04e8s02smy5"]
+
+[ext_resource type="Script" path="res://Interaction/Objects/Item/item_data.gd" id="1_kd8co"]
+
+[resource]
+script = ExtResource("1_kd8co")
+name = "Creature"
+description = "I don't know what this is
+"
+Stackable = false

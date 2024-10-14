@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bw3qe2ri5vwv3"]
+
+[ext_resource type="Script" path="res://Interaction/Objects/Item/item_data.gd" id="1_txgn7"]
+[ext_resource type="Texture2D" uid="uid://daa5pqxc4jy2g" path="res://Interaction/Objects/Item/item_tilemap.png" id="2_g0ka5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uykh"]
+atlas = ExtResource("2_g0ka5")
+region = Rect2(0, 0, 50, 50)
+
+[resource]
+script = ExtResource("1_txgn7")
+name = "Mask"
+description = "Ancient mask from the original society of the mountain, according to myth they are possessed by their souls."
+Stackable = false
+texture = SubResource("AtlasTexture_0uykh")

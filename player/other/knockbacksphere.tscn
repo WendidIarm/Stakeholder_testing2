@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn6mgpo511akw"]
+
+[ext_resource type="Script" path="res://player/other/Explosion.gd" id="1_t3oj8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4adlk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4dhph"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jxtwq"]
+
+[node name="Knockbacksphere" type="RigidBody3D"]
+script = ExtResource("1_t3oj8")
+knockback_force = 300.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_4adlk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4dhph")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0)
+shape = SubResource("SphereShape3D_jxtwq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_delay_timeout"]
