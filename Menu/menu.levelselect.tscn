@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cw7yeugihcmja"]
 
 [ext_resource type="Script" path="res://Menu/Menu.levelselect.gd" id="1_8s6hg"]
-[ext_resource type="Texture2D" uid="uid://c85erkb2erjb3" path="res://other/Screenshot 2024-08-21 102605.png" id="2_fbqwe"]
+[ext_resource type="Texture2D" uid="uid://wyu2q61dxwbo" path="res://FinalTextures/digitechconcept.png" id="2_722f5"]
 
 [node name="Menu2" type="Control"]
 layout_mode = 3
@@ -45,11 +45,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -498.0
+offset_top = -447.0
+offset_right = 1858.0
+offset_bottom = 1385.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.6, 0.6)
 mouse_filter = 2
-texture = ExtResource("2_fbqwe")
-expand_mode = 3
+texture = ExtResource("2_722f5")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/playtest" to="." method="_on_playtest_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/mainlevel" to="." method="_on_mainlevel_pressed"]

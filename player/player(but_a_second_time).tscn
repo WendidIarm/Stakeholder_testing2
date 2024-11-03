@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjta3eki5jj37"]
+[gd_scene load_steps=13 format=3 uid="uid://bjta3eki5jj37"]
 
 [ext_resource type="Script" path="res://player/Playerscript.gd" id="1_ukgqn"]
 [ext_resource type="PackedScene" uid="uid://8vpyvje0rphb" path="res://player/view_model.tscn" id="2_pp75x"]
@@ -19,6 +19,11 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo861"]
 bg_color = Color(0.935866, 0, 0.275534, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1ot1"]
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Player(but a second time)" type="Node3D"]
 
@@ -58,6 +63,9 @@ cull_mask = 1047554
 
 [node name="interaction_raycst" parent="Player/neck/Camera3D" instance=ExtResource("3_sud4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0577269, 0)
+
+[node name="abilityraycast" type="RayCast3D" parent="Player/neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.59766, 0)
 
 [node name="Topcast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.390959, 0)
@@ -201,8 +209,31 @@ Space - Jump
 Ctrl - Crouch
 F - Punch
 T - Inspect(buggy)
-TAB - Hide controls"
+TAB - Hide controls
+B - Self destruct"
 horizontal_alignment = 1
+
+[node name="Areyousure" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -160.5
+offset_right = 118.0
+offset_bottom = 70.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Are you sure?
+		 []"
+label_settings = SubResource("LabelSettings_c1ot1")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="UI"]
+wait_time = 10.0
 
 [connection signal="pressed" from="UI/deathscreen/BoxContainer2/restart" to="UI" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/deathscreen/BoxContainer2/quit" to="UI" method="_on_quit_pressed"]
+[connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]

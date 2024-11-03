@@ -13,6 +13,7 @@ var sensitivity = 0.004
 @export var crouch_transition = 8.0
 @export var falldmg_threshold = 20
 
+#____________________________________
 
 var stand_height : float
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -36,8 +37,20 @@ func _ready():
 	GlobalMessenger.connect("MaskSignal", Mask_Active)
 
 
+#___________________________________________________________________ TESTING ZONE
+#@onready var collision_point = ability_raycast.get_collision_point()
+#@onready var ability_raycast := $abilityraycast
+var collisionpoint : Vector3
+
+
 func _process(_delta):
 	pass
+	#collisionpoint = (0,0,0)
+	#if ability_raycast.is_colliding():
+	#	collisionpoint = ability_raycast.get_collision_point()
+	#	print(collisionpoint)
+		
+#___________________________________________________________________
 
 func _unhandled_input(event): #First person mouse control
 	if event is InputEventMouseButton:

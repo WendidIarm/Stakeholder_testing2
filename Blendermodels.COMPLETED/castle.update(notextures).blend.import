@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dhv2k7rpe55ey"
-path="res://.godot/imported/silly castle_Nomoss.blend-2e663d2d361b5190bbcf0e958784e03f.scn"
+uid="uid://cdhlnelfjtmiu"
+path="res://.godot/imported/castle.update(notextures).blend-0babb01809669b1e16b51975f5640f67.scn"
 
 [deps]
 
-source_file="res://silly castle_Nomoss.blend"
-dest_files=["res://.godot/imported/silly castle_Nomoss.blend-2e663d2d361b5190bbcf0e958784e03f.scn"]
+source_file="res://Blendermodels.COMPLETED/castle.update(notextures).blend"
+dest_files=["res://.godot/imported/castle.update(notextures).blend-0babb01809669b1e16b51975f5640f67.scn"]
 
 [params]
 
